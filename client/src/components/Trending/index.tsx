@@ -73,6 +73,8 @@ const Trending = () => {
                                     skills={project.skills}
                                     tags={project.tags}
                                     likes={project.likes}
+                                    _id={project._id}
+                                    requestsReceived={project.requestsReceived}
                                 />
                             ))}
                         </Col>
@@ -92,6 +94,8 @@ const Trending = () => {
                                     skills={project.skills}
                                     tags={project.tags}
                                     likes={project.likes}
+                                    _id={project._id}
+                                    requestsReceived={project.requestsRequired}
                                 />
                             ))}
                         </Col>

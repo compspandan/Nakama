@@ -1,6 +1,7 @@
 import { Input, Modal } from 'antd';
 import { PaperPlaneTilt } from 'phosphor-react';
 import React, { FC, useState } from 'react';
+import axios from '../../../helpers/axios';
 import { ReturnBtn, SubmitBtn } from './Btn';
 import Text from './Text';
 const { TextArea } = Input;
@@ -10,23 +11,28 @@ const { TextArea } = Input;
 interface Props {
     visible: boolean;
     setVisible: (visible: boolean) => void;
+    user: any;
+    project_id: string;
+    requestsReceived: any[];
 }
 
-const Request: FC<Props> = ({ visible, setVisible }) => {
+const Request: FC<Props> = ({ visible, setVisible, user, project_id, requestsReceived }) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [text, setText] = useState<string>("");
+    const [comment, setComment] = useState<string>("");
 
     const showModal = () => {
         setVisible(true);
     };
 
-    const handleOk = () => {
+    const handleOk = async () => {
+        if (comment === "") return;
+        await axios.put(`/project/${project_id}`, { requestsReceived: [...requestsReceived, { user, comment }] });
         setLoading(true);
-        console.log(text); // handle req
+        console.log(comment); // handle req
         setTimeout(() => {
             setLoading(false);
             setVisible(false);
-            setText("");
+            setComment("");
         }, 3000);
     };
 
@@ -54,7 +60,7 @@ const Request: FC<Props> = ({ visible, setVisible }) => {
                 <Text>
                     Write a small description about why you want to work on this project!
                 </Text>
-                <TextArea value={text} onChange={(e) => setText(e.target.value)} rows={4} />
+                <TextArea value={comment} onChange={(e) => setComment(e.target.value)} rows={4} />
             </Modal>
         </>
     );
