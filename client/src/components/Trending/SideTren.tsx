@@ -8,7 +8,7 @@ import DjangoSvg from "../../assets/django-logo-positive.svg";
 import KotlinSvg from "../../assets/Kotlin-logo.svg";
 const SideTren = () => {
     return (
-        <Card title="Skills">
+        <Card title={<h1 style={{fontWeight:"bolder"}}>Skills</h1>}>
             <a href="https://reactjs.org/">
             <Card.Grid style={{ width: '50%', textAlign: 'center',padding:"40px"}}>
                 {<img src={ReactSvg} style={{height:"50px",width:"50px"}}></img>}
