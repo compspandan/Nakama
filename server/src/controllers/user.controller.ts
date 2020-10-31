@@ -28,21 +28,8 @@ async function createUser(req: any, res: Response) {
         qualification: req.body.qualification,
         bio : req.body.bio,
         skills: req.body.skills,
-        img: {
-            data: null,
-            contentType: null,
-        },
+        img: req.body.img
     });
-    if (req.file != undefined) {
-        newUser.img.data = fs.readFileSync(
-            path.join('uploads/' + req.file.filename)
-        );
-        newUser.img.contentType = 'image/png';
-        fs.unlink(path.join('uploads/' + req.file.filename), (err: any) => {
-            if (err) throw err;
-            console.log('image was deleted');
-        });
-    }
     await newUser.save(function (err: any, user: IUser) {
         if (!err) {
             res.json({ user: user, message: 'successfully saved user' }).status(
@@ -115,6 +102,7 @@ async function putUser(req: Request, res: Response) {
             qualification: req.body.qualification,
             bio : req.body.bio,
             skills: req.body.skills,
+            img: req.body.img
         },
         function (err, user: IUser) {
             if (!err) {
