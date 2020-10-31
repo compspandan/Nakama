@@ -63,20 +63,15 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
                 <Container style={{ margin: "15px" }}>
                     <H2>Requests</H2>
                     {
-                        projects.map(function (project, dex) {
-                            const title = project.title;
+                        requestsReceived.map(function (request, index) {
                             return (
-                                project.requestsReceived.map(function (request, index) {
-                                    return (
-                                        <Requests
-                                            key={index}
-                                            title={title}
-                                            username={request.user.username}
-                                            img={request.user.img}
-                                            comment={request.comment}
-                                        />
-                                    )
-                                })
+                                <Requests
+                                    key={index}
+                                    title={index + 1}
+                                    username={request.user.username}
+                                    img={request.user.img}
+                                    comment={request.comment}
+                                />
                             )
                         })
                     }
