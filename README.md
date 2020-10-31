@@ -1,4 +1,4 @@
-# nakama
+# Nakama
 Find teammates for projects.
 
 ## Motivation 
