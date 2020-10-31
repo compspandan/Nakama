@@ -42,7 +42,7 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
         }
         else {
             const { requestsReceived, username } = user;
-            
+            console.log(data);
             const activeProjects = data.projects.filter((project: any) => {
                 if (project.teamLeader) {
                     return (project.teamLeader.username === username)
@@ -62,7 +62,7 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
                         <DashboardActiveProjects
                             projects={activeProjects}
                         />
-                        <DashboardFriendReq requestsReceived={requestsReceived} />
+                        <DashboardFriendReq requestsReceived={changedReqRecieved} />
                     </Container>
                 </DashBoardContainer>
             )
