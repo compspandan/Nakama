@@ -11,7 +11,7 @@ import SignIn from "./views/SignIn";
 import "./styles/index.css"
 import SignUp from './views/SignUp';
 import store from './easy-peasy/store';
-
+import Footer from "./components/Footer/index";
 
 const Index = () => {
     return (
@@ -22,6 +22,7 @@ const Index = () => {
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/signin" exact component={SignIn} />
                 <Route path="/signup" exact component={SignUp}/>
+                <Footer/>
             </Switch>
         </Router>
         </StoreProvider>
