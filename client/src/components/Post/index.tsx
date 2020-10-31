@@ -21,7 +21,6 @@ const Post = (props:any) => {
             console.log(err)
             alert(err)
         })
-        //console.log(values);
     };
     return (
         <div>
@@ -112,16 +111,16 @@ const Post = (props:any) => {
                         ></Select>
                     </Form.Item>
                     <br />
-                    {/* <Form.Item
-                        name="ProjImg"
+                    <Form.Item
+                        name="coverImg"
                         label={
-                            <Tooltip title="An optional field for users who want to use a project pic.">
+                            <Tooltip title="Link to the project profile pic.">
                                 Project Image
                             </Tooltip>
                         }
                     >
-                        <UploadImg />
-                    </Form.Item> */}
+                        <Input/>
+                    </Form.Item>
                     <Button type="primary" htmlType="submit" size="large">
                         Submit
                     </Button>
