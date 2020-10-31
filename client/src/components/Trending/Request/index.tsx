@@ -26,7 +26,8 @@ const Request: FC<Props> = ({ visible, setVisible, user, project_id, requestsRec
 
     const handleOk = async () => {
         if (comment === "") return;
-        await axios.put(`/project/${project_id}`, { requestsReceived: [...requestsReceived, { user, comment }] });
+        if (requestsReceived === undefined) await axios.put(`/project/${project_id}`, { requestsReceived: [{ user, comment }] });
+        else await axios.put(`/project/${project_id}`, { requestsReceived: [...requestsReceived, { user, comment }] });
         setLoading(true);
         console.log(comment); // handle req
         setTimeout(() => {

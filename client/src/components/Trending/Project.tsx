@@ -1,8 +1,7 @@
-import { Button, notification } from 'antd';
+import { notification } from 'antd';
 import { useStoreState } from 'easy-peasy';
 import { ArrowUp } from 'phosphor-react';
 import React, { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Card from './Card';
 import Img from './Img';
 import Likes, { CommentBtn, LikeBtn, LikesContainer } from './Likes';
