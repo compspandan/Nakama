@@ -24,4 +24,4 @@ Then the server can be started using one of the above two commands.
 
 1. `npm run watch`
 
-2. `npm run dev`
+2. `npm run dev` 
