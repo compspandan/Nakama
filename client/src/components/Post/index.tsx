@@ -8,8 +8,21 @@ import UploadImg from './UploadImg';
 import Button from '../SignIn/Button';
 import Input from '../SignIn/Input';
 import Form from '../SignUp/Form';
+import axios from '../../helpers/axios'
 
-const Post = () => {
+const Post = (props:any) => {
+
+    const onSubmit = async (values: any) => {
+        await axios.post('/project',values)
+        .then(function(response){
+            props.func("dashboard");
+        })
+        .catch(function(err:any){
+            console.log(err)
+            alert(err)
+        })
+        //console.log(values);
+    };
     return (
         <div>
             <Hr>
@@ -23,7 +36,12 @@ const Post = () => {
                     margin: '0 15px',
                 }}
             >
-                <Form style={{ display: 'inline-block', margin: '20px 0' }}>
+                <Form
+                    layout="horizontal"
+                    initialValues={{ remember: true }}
+                    onFinish={onSubmit}  
+                    style={{ display: 'inline-block', margin: '20px 0' }}
+                >
                     <Form.Item
                         name="title"
                         label={
@@ -36,7 +54,7 @@ const Post = () => {
                     </Form.Item>
                     <br />
                     <Form.Item
-                        name="Description"
+                        name="description"
                         label={
                             <Tooltip title="A description will help others understand more about the project.">
                                 Description
@@ -54,7 +72,7 @@ const Post = () => {
                     </Form.Item>
                     <br />
                     <Form.Item
-                        name="Project Link"
+                        name="projectLink"
                         label={
                             <Tooltip title="If working with a public repository a link to the repository would be helpful.">
                                 Project Link
@@ -65,18 +83,22 @@ const Post = () => {
                     </Form.Item>
                     <br />
                     <Form.Item
-                        name="Prerequisites"
+                        name="skills"
                         label={
                             <Tooltip title="List of skills that you expect the teammates to know.">
-                                Prerequisites
+                                Prerequisite Skills
                             </Tooltip>
                         }
                     >
-                        <Input/>
+                        <Select
+                            mode="tags"
+                            tokenSeparators={[',']}
+                            style={{ width: '300px'}}
+                        ></Select>
                     </Form.Item>
                     <br />
                     <Form.Item
-                        name="Tags"
+                        name="tags"
                         label={
                             <Tooltip title="Categories or tags in which the project belongs. This makes it easier to filter the project.">
                                 Tags
@@ -90,7 +112,7 @@ const Post = () => {
                         ></Select>
                     </Form.Item>
                     <br />
-                    <Form.Item
+                    {/* <Form.Item
                         name="ProjImg"
                         label={
                             <Tooltip title="An optional field for users who want to use a project pic.">
@@ -99,7 +121,7 @@ const Post = () => {
                         }
                     >
                         <UploadImg />
-                    </Form.Item>
+                    </Form.Item> */}
                     <Button type="primary" htmlType="submit" size="large">
                         Submit
                     </Button>
