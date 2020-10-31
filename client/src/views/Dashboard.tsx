@@ -70,7 +70,14 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
         }
         else {
             const { requestsReceived, username } = user;
-            const activeProjects = data.projects.map((project: any) => (project.teamLeader.username === username));
+            const activeProjects = data.projects.map((project: any) => {
+                if(project.teamLeader) {
+                    return (project.teamLeader.username === username)
+                }
+                else {
+                    return false;
+                }
+            });
 
             console.log(activeProjects, requestsReceived);
             return (
