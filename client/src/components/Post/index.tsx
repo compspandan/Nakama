@@ -9,12 +9,16 @@ import Button from '../SignIn/Button';
 import Input from '../SignIn/Input';
 import Form from '../SignUp/Form';
 import axios from '../../helpers/axios'
+import {useStoreState} from 'easy-peasy'
+
 
 const Post = (props:any) => {
-
+    const {user}  = useStoreState((state:any)=> state.auth);
     const onSubmit = async (values: any) => {
+        values.teamLeader = user;
         await axios.post('/project',values)
         .then(function(response){
+
             props.func("dashboard");
         })
         .catch(function(err:any){
