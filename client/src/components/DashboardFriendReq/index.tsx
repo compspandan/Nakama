@@ -83,10 +83,10 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
                 </Container>
             </Col>
             <Col xs={24} md={9}>
-                <Container style={{ margin: "15px" }}>
+                {/* <Container style={{ margin: "15px" }}>
                     <H2>Friends</H2>
                     <Friends />
-                </Container>
+                </Container> */}
             </Col>
         </Row>
     )

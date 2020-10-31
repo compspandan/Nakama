@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Project: FC<Props> = ({ title, description, coverImg, skills, teamMembers }) => {
-
+    const newteamMembers = teamMembers===undefined ? []:teamMembers
     return (
         <Card>
             <div>
@@ -26,7 +26,7 @@ const Project: FC<Props> = ({ title, description, coverImg, skills, teamMembers 
                     <Desc>{description}</Desc>
                 </Container>
                 <Container>
-                    {teamMembers.map((username, dex) => (
+                    {newteamMembers.map((username, dex) => (
                         <Link to={`/user/${username}`} key={dex}>
                             <Avatar src={`https://picsum.photos/200/300?random=${dex}`} size="large" style={{ margin: "5px" }} />
                         </Link>

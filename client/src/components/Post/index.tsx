@@ -15,8 +15,8 @@ import {useStoreState} from 'easy-peasy'
 const Post = (props:any) => {
     const {user}  = useStoreState((state:any)=> state.auth);
     const onSubmit = async (values: any) => {
-        values.teamLeader = user;
-        await axios.post('/project',values)
+        const userDetails = {...values,teamMembers:[user],teamLeader : user};
+        await axios.post('/project',userDetails)
         .then(function(response){
 
             props.func("dashboard");
