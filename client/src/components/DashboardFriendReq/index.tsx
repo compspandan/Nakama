@@ -1,5 +1,5 @@
-import { Col, Row } from 'antd';
-import React from 'react';
+import { Col, Row, Skeleton } from 'antd';
+import React, { FC } from 'react';
 import Container from '../Container';
 import { H2 } from '../Heading';
 import Friends from './Friends';
@@ -46,8 +46,17 @@ const projects = [
     }
 ]
 
+interface IReq {
+    user: any;
+    comment: string;
+}
 
-const DashboardFriendReq = () => {
+interface Props {
+    requestsReceived: IReq[]
+}
+
+const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
+
     return (
         <Row>
             <Col xs={24} md={15}>
@@ -55,7 +64,7 @@ const DashboardFriendReq = () => {
                     <H2>Requests</H2>
                     {
                         projects.map(function (project, dex) {
-                            const title = project.title
+                            const title = project.title;
                             return (
                                 project.requestsReceived.map(function (request, index) {
                                     return (

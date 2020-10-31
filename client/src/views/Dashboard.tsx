@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { SliderPage } from '../components/Page';
 import Container, { DashBoardContainer } from '../components/Container';
 import DashboardFriendReq from '../components/DashboardFriendReq';
 import { CenterH1, H2 } from '../components/Heading';
 import Post from '../components/Post';
 import DashboardActiveProjects from '../components/DashboardActiveProjects';
+import { ReactQueryCacheProvider, QueryCache, useQuery } from 'react-query';
+import { useStoreState } from 'easy-peasy';
+import axios from '../helpers/axios';
+import { Skeleton } from 'antd';
 
-const renderContent = (choice: string,setChoice:any) => {
-        const projects = [
+
+const queryCache = new QueryCache()
+
+interface RenderProps {
+    choice: string;
+    setChoice: (choice: string) => void;
+}
+
+const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
+    const { user } = useStoreState((state: any) => state.auth);
+
+    const { isLoading, error, data } = useQuery('user', () =>
+        axios.get(`/project/`).then(res =>
+            res.data
+        )
+    )
+
+
+    const projects = [
         {
             title: "Stock Price Prediction",
             description: "Predict the future price of the stock market based on the previous year’s data using deep learning.",
@@ -34,20 +55,37 @@ const renderContent = (choice: string,setChoice:any) => {
         },
     ]
 
-    if (choice === "post") return <Post func={setChoice}/>;
+    if (choice === "post") return <Post func={setChoice} />;
     else {
-        return (
-            <DashBoardContainer>
-                <CenterH1>Dashboard</CenterH1>
-                <Container>
-                    <H2>Active Projects</H2>
-                    <DashboardActiveProjects 
-                        projects={projects}
-                    />
-                    <DashboardFriendReq />
-                </Container>
-            </DashBoardContainer>
-        )
+        if (isLoading) {
+            return (
+                <DashBoardContainer>
+                    <CenterH1>Dashboard</CenterH1>
+                    <Container>
+                        <H2>Active Projects</H2>
+                        <Skeleton active />
+                    </Container>
+                </DashBoardContainer>
+            )
+        }
+        else {
+            const { requestsReceived, username } = user;
+            const activeProjects = data.projects.map((project: any) => (project.teamLeader.username === username));
+
+            console.log(activeProjects, requestsReceived);
+            return (
+                <DashBoardContainer>
+                    <CenterH1>Dashboard</CenterH1>
+                    <Container>
+                        <H2>Active Projects</H2>
+                        <DashboardActiveProjects
+                            projects={projects}
+                        />
+                        <DashboardFriendReq requestsReceived={requestsReceived} />
+                    </Container>
+                </DashBoardContainer>
+            )
+        }
     }
 }
 
@@ -55,9 +93,11 @@ const renderContent = (choice: string,setChoice:any) => {
 const Dashboard = () => {
     const [choice, setChoice] = useState<string>("dashboard");
     return (
-        <SliderPage setChoice = {setChoice}>
+        <SliderPage setChoice={setChoice}>
             <Container>
-                {renderContent(choice,setChoice)} 
+                <ReactQueryCacheProvider queryCache={queryCache}>
+                    <RenderContent choice={choice} setChoice={setChoice} />
+                </ReactQueryCacheProvider>
             </Container>
         </SliderPage>
     )
