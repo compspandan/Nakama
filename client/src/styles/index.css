@@ -1,0 +1,7 @@
+body {
+    font-family: 'Palanquin';
+}
+
+.ant-select-multiple .ant-select-selector{
+    border-radius: 18px;
+}
