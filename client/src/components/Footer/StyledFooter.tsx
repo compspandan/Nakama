@@ -4,7 +4,11 @@ const { Footer } = Layout;
 
 
 export default styled(Footer)`
-    background-color: inherit;
-    display: flex;
-    justify-content: center;
+padding :20px 10px;
+background-color:black;
+overflow:hidden;
+ul {
+    list-style: none;
+    overflow:hidden;
+}
 `;

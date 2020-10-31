@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Project from './Project';
 import { useQuery } from 'react-query'
 import axios from '../../helpers/axios';
-
+import SideTren from './SideTren';
 
 const TrendingComp = styled.div`
     background-color: #C4C4C4;
@@ -34,7 +34,7 @@ const Trending = () => {
                 <div>
                     <Row>
                         <Col className="gutter-row" span={24}>
-                            <TrendingComp>Side Trending</TrendingComp>
+                        <SideTren />
                             <Skeleton active />
                         </Col>
                     </Row>
@@ -47,7 +47,7 @@ const Trending = () => {
                             <Skeleton active />
                         </Col>
                         <Col className="gutter-row" md={8}>
-                            <TrendingComp style={{ height: "50vw" }}>Side Trending</TrendingComp>
+                        <SideTren />
                         </Col>
                     </Row>
                 </div>
@@ -63,7 +63,7 @@ const Trending = () => {
                 <div>
                     <Row>
                         <Col className="gutter-row" span={24}>
-                            <TrendingComp>Side Trending</TrendingComp>
+                        <SideTren />
                             {projects.map((project: any, dex: number) => (
                                 <Project
                                     key={dex}
@@ -96,7 +96,7 @@ const Trending = () => {
                             ))}
                         </Col>
                         <Col className="gutter-row" md={8}>
-                            <TrendingComp style={{ height: "50vw" }}>Side Trending</TrendingComp>
+                        <SideTren />
                         </Col>
                     </Row>
                 </div>
