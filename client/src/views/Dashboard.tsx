@@ -6,7 +6,7 @@ import { CenterH1, H2 } from '../components/Heading';
 import Post from '../components/Post';
 import DashboardActiveProjects from '../components/DashboardActiveProjects';
 
-const renderContent = (choice: string) => {
+const renderContent = (choice: string,setChoice:any) => {
         const projects = [
         {
             title: "Stock Price Prediction",
@@ -34,7 +34,7 @@ const renderContent = (choice: string) => {
         },
     ]
 
-    if (choice === "post") return <Post />;
+    if (choice === "post") return <Post func={setChoice}/>;
     else {
         return (
             <DashBoardContainer>
@@ -57,7 +57,7 @@ const Dashboard = () => {
     return (
         <SliderPage setChoice = {setChoice}>
             <Container>
-                {renderContent(choice)} 
+                {renderContent(choice,setChoice)} 
             </Container>
         </SliderPage>
     )
