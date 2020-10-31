@@ -8,6 +8,7 @@ interface IReq extends Document {
 
 export interface IProject extends Document {
     title: String;
+    teamLeader:IUser,
     members: IUser[];
     description: String;
     coverImg: String;
@@ -22,6 +23,7 @@ export interface IProject extends Document {
 
 const projectSchema: Schema = new Schema({
     title: String,
+    teamLeader:userModel.schema,
     members: [userModel.schema],
     description: String,
     coverImg: String,
