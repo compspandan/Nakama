@@ -11,10 +11,10 @@ const app: Application = express();
 const PORT = process.env.PORT || 5000;
 const { userRouter, projectRouter } = router;
 
-const mongoURL = process.env.PORT
-    ? `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.msilm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
-    : 'mongodb://localhost:27017/nakama';
-//const mongoURL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.msilm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
+// const mongoURL = process.env.PORT
+//     ? `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.msilm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+//     : 'mongodb://localhost:27017/nakama';
+const mongoURL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.msilm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
 console.log(mongoURL);
 
