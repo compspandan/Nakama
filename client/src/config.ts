@@ -1,1 +1,1 @@
-export const baseURL = process.env.NODE_ENV === "development" ? 'http://localhost:5000/' : 'https://nakama-app.herokuapp.com/';
+export const baseURL = process.env.NODE_ENV === "development" ? 'http://localhost:5000/' : 'https://nakama-api.herokuapp.com/';
