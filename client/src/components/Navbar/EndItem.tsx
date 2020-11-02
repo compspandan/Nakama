@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import Dropdown, { InnerText } from './Dropdown';
 import { LinkBtn, LinkGroup } from './LinkBtn';
 import MenuItem from './MenuItem';
-import ProfileImg from '../../assets/profileimg.jpg';
 
 const Container = styled.div`
     margin-left: auto;

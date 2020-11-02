@@ -13,7 +13,7 @@ interface Props {
     description: string;
     coverImg: string;
     skills: string[];
-    members: string[];
+    members: any[];
 }
 
 const Project: FC<Props> = ({ title, description, coverImg, skills, members }) => {

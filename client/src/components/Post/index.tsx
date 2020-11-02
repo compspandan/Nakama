@@ -1,15 +1,13 @@
-import { Select, Tooltip } from 'antd';
 import React, { FC } from 'react';
+import { Select, Tooltip } from 'antd';
+import axios from '../../helpers/axios';
+import Button from '../SignIn/Button';
+import Input from '../SignIn/Input';
+import Form from '../SignUp/Form';
 import Hr from './heading';
 import Name from './Name';
 import Tag from './Tag';
 import TA from './TextArea';
-import UploadImg from './UploadImg';
-import Button from '../SignIn/Button';
-import Input from '../SignIn/Input';
-import Form from '../SignUp/Form';
-import axios from '../../helpers/axios'
-import {useStoreState} from 'easy-peasy'
 
 interface Props {
     setChoice: (choice: string) => void;
@@ -17,10 +15,8 @@ interface Props {
 }
 
 const Post: FC<Props> = ({ setChoice, user }) => {
-  
-    const {user}  = useStoreState((state:any)=> state.auth);
     const onSubmit = async (values: any) => {
-        const userDetails = {...values, members:[user], teamLeader : user};
+        const userDetails = { ...values, members: [user], teamLeader: user };
         await axios.post('/project', userDetails)
             .then((res) => { setChoice("dashboard") })
             .catch(function (err: any) {
@@ -128,7 +124,7 @@ const Post: FC<Props> = ({ setChoice, user }) => {
                     >
                         <Input />
                     </Form.Item>
-                  {/* <Form.Item
+                    {/* <Form.Item
                         name="ProjImg"
                         label={
                             <Tooltip title="Link to the project profile pic.">
@@ -139,7 +135,7 @@ const Post: FC<Props> = ({ setChoice, user }) => {
                         <Input/>
                     </Form.Item>
                     */}
-                  
+
                     <Button type="primary" htmlType="submit" size="large">
                         Submit
                     </Button>
