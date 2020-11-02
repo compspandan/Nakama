@@ -51,19 +51,19 @@ export const SliderPage: FC<SiderProps> = ({ setChoice, children }) => {
                     <StyledItem key="0" onClick={() => setChoice("dashboard")}>
                         <Cube size={32} />
                     </StyledItem>
-                    <StyledItem key="1">
+                    <StyledItem key="1" onClick={() => setChoice("user")}>
                         <User size={32} />
                     </StyledItem>
-                    <StyledItem key="2">
+                    <StyledItem key="2" onClick={() => setChoice("chat")}>
                         <ChatText size={32} />
                     </StyledItem>
-                    <StyledItem key="3">
+                    <StyledItem key="3" onClick={() => setChoice("notifications")}>
                         <Bell size={32} />
                     </StyledItem>
                     <StyledItem key="4" onClick={() => setChoice("post")}>
                         <Plus size={32} />
                     </StyledItem>
-                    <EndItem key="5">
+                    <EndItem key="5" onClick={() => setChoice("settings")}>
                         <Gear size={32} />
                     </EndItem>
                 </StyledMenu>

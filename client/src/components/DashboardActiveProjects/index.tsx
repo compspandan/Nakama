@@ -8,7 +8,7 @@ interface IProject {
     coverImg: string;
     skills: string[];
     tags: string[];
-    teamMembers: string[];
+    members: string[];
 }
 
 interface Props {
@@ -18,8 +18,8 @@ interface Props {
 const ActiveProjects: FC<Props> = ({ projects }) => {
     return (
         <Container>
-            {projects.map(({ title, description, coverImg, skills, teamMembers }, dex) => (
-                <Project key={dex} title={title} description={description} coverImg={coverImg} skills={skills} teamMembers={teamMembers}/>
+            {projects.map(({ title, description, coverImg, skills, members }, dex) => (
+                <Project key={dex} title={title} description={description} coverImg={coverImg} skills={skills} members={members} />
             ))}
         </Container>
     )
