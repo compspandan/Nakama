@@ -6,8 +6,6 @@ import { ReturnBtn, SubmitBtn } from './Btn';
 import Text from './Text';
 const { TextArea } = Input;
 
-
-
 interface Props {
     visible: boolean;
     setVisible: (visible: boolean) => void;
@@ -17,7 +15,7 @@ interface Props {
 }
 
 const Request: FC<Props> = ({ visible, setVisible, user, project_id, requestsReceived }) => {
-    const [loading, setLoading] = useState<boolean>(false);
+    const [_, setLoading] = useState<boolean>(false);
     const [comment, setComment] = useState<string>("");
 
     const showModal = () => {

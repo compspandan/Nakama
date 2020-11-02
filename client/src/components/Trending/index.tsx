@@ -1,19 +1,10 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Col, Row, Skeleton } from 'antd';
-import styled from 'styled-components';
 import Project from './Project';
 import { useQuery } from 'react-query'
 import axios from '../../helpers/axios';
 import SideTren from './SideTren';
-
-const TrendingComp = styled.div`
-    background-color: #C4C4C4;
-    margin-top: 18px;
-    padding: 8px 0;
-    height : 30vw;
-`;
-
 
 
 const Trending = () => {
@@ -21,7 +12,7 @@ const Trending = () => {
     const isSmallScreen = useMediaQuery({ maxWidth: 768 })
     //window.addEventListener('resize',findScreenSize) 
 
-    const { isLoading, error, data } = useQuery('allProjects', () =>
+    const { isLoading, data } = useQuery('allProjects', () =>
         axios.get('/project').then(res =>
             res.data
         )
