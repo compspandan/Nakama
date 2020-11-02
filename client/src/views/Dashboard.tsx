@@ -57,7 +57,7 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
                         <DashboardActiveProjects
                             projects={activeProjects}
                         />
-                        <DashboardFriendReq requestsReceived={changedReqRecieved} />
+                        <DashboardFriendReq requestsReceived={requestsReceived} />
                     </Container>
                 </DashBoardContainer>
             )
