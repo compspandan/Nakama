@@ -1,8 +1,9 @@
-import { Col, Empty, Row } from 'antd';
+import { Col, Row } from 'antd';
 import React, { FC } from 'react';
 import Container from '../Container';
 import { H2 } from '../Heading';
 import Requests from './Requests';
+import Empty from '../Empty';
 
 interface IReq {
     user: any;
@@ -20,12 +21,8 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
                 <Col xs={24} md={15}>
                     <Container style={{ margin: "15px" }}>
                         <H2>Requests</H2>
-                        <Empty 
-                            description={
-                                <div>
-                                    You currently have no requests.
-                                </div>
-                            }
+                        <Empty
+                            description={"You currently have no requests."}
                         />
                     </Container>
                 </Col>

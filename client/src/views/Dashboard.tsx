@@ -1,14 +1,15 @@
-import React, { useState, FC } from 'react';
-import { SliderPage } from '../components/Page';
-import Container, { DashBoardContainer } from '../components/Container';
-import DashboardFriendReq from '../components/DashboardFriendReq';
-import { CenterH1, H2 } from '../components/Heading';
-import Post from '../components/Post';
-import DashboardActiveProjects from '../components/DashboardActiveProjects';
-import { ReactQueryCacheProvider, QueryCache, useQuery } from 'react-query';
+import { Skeleton } from 'antd';
 import { useStoreState } from 'easy-peasy';
+import React, { FC, useState } from 'react';
+import { QueryCache, ReactQueryCacheProvider, useQuery } from 'react-query';
+import Container, { DashBoardContainer } from '../components/Container';
+import DashboardActiveProjects from '../components/DashboardActiveProjects';
+import DashboardFriendReq from '../components/DashboardFriendReq';
+import Empty from '../components/Empty';
+import { CenterH1, H2 } from '../components/Heading';
+import { SliderPage } from '../components/Page';
+import Post from '../components/Post';
 import axios from '../helpers/axios';
-import { Empty, Skeleton } from 'antd';
 
 
 const queryCache = new QueryCache()
@@ -66,11 +67,7 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
     else {
         return (
             <Empty
-                description={
-                    <div>
-                        Not Implemented
-                    </div>
-                }
+                description={"Not Implemented"}
             />
         )
     }
