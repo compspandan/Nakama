@@ -1,8 +1,7 @@
-import { Col, Row, Skeleton } from 'antd';
+import { Col, Row } from 'antd';
 import React, { FC } from 'react';
 import Container from '../Container';
 import { H2 } from '../Heading';
-import Friends from './Friends';
 import Requests from './Requests';
 
 const projects = [
@@ -82,12 +81,7 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
                     }
                 </Container>
             </Col>
-            <Col xs={24} md={9}>
-                <Container style={{ margin: "15px" }}>
-                    <H2>Friends</H2>
-                    <Friends />
-                </Container>
-            </Col>
+            <Col xs={24} md={9} />
         </Row>
     )
 }

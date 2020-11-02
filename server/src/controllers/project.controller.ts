@@ -37,23 +37,28 @@ export const getProject = async (req: Request, res: Response) => {
 export const createProject = async (req: Request, res: Response) => {
     const {
         title,
+        teamLeader,
         members,
         description,
         skills,
-        requestsSent,
         presentation,
         projectLink,
         tags,
         coverImg,
     } = req.body;
+    console.log(coverImg);
 
     const project = new Project({
         title,
+        teamLeader,
         members,
         description,
         skills,
-        requestsSent,
-        coverImg,
+        requestsSent: [],
+        coverImg:
+            coverImg === ''
+                ? 'https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png'
+                : coverImg,
         presentation,
         projectLink,
         tags,
@@ -100,7 +105,6 @@ export const updateProject = async (req: Request, res: Response) => {
     if (skills) (project as any).skills = skills;
     if (requestsSent) (project as any).requestsSent = requestsSent;
     if (requestsReceived) (project as any).requestsReceived = requestsReceived;
-    if (coverImg) (project as any).coverImg = coverImg;
     if (coverImg) (project as any).coverImg = coverImg;
     if (likes) (project as any).likes = likes;
     if (presentation) (project as any).presentation = presentation;

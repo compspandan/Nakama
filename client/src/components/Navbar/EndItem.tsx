@@ -32,7 +32,7 @@ const menu = (
 )
 
 const EndItem = () => {
-    const { loggedIn } = useStoreState((state: any) => state.auth);
+    const { loggedIn, user } = useStoreState((state: any) => state.auth);
     if (!loggedIn) {
         return (
             <Container>
@@ -51,7 +51,7 @@ const EndItem = () => {
     else {
         return (
             <StyledLink to="/dashboard">
-                <Avatar size="large" src={ProfileImg} />
+                <Avatar size="large" src={user.img} />
             </StyledLink>
         )
     }

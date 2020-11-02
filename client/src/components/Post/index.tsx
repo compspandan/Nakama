@@ -1,5 +1,5 @@
 import { Select, Tooltip } from 'antd';
-import React from 'react';
+import React, { FC } from 'react';
 import Hr from './heading';
 import Name from './Name';
 import Tag from './Tag';
@@ -10,19 +10,22 @@ import Input from '../SignIn/Input';
 import Form from '../SignUp/Form';
 import axios from '../../helpers/axios'
 
-const Post = (props:any) => {
+interface Props {
+    setChoice: (choice: string) => void;
+    user: any;
+}
+
+const Post: FC<Props> = ({ setChoice, user }) => {
 
     const onSubmit = async (values: any) => {
-        await axios.post('/project',values)
-        .then(function(response){
-            props.func("dashboard");
-        })
-        .catch(function(err:any){
-            console.log(err)
-            alert(err)
-        })
-        //console.log(values);
+        await axios.post('/project', { ...values, teamLeader: user })
+            .then((res) => { setChoice("dashboard") })
+            .catch(function (err: any) {
+                console.log(err);
+                alert(err)
+            })
     };
+
     return (
         <div>
             <Hr>
@@ -39,7 +42,7 @@ const Post = (props:any) => {
                 <Form
                     layout="horizontal"
                     initialValues={{ remember: true }}
-                    onFinish={onSubmit}  
+                    onFinish={onSubmit}
                     style={{ display: 'inline-block', margin: '20px 0' }}
                 >
                     <Form.Item
@@ -50,7 +53,7 @@ const Post = (props:any) => {
                             </Tooltip>
                         }
                     >
-                        <Input/>
+                        <Input />
                     </Form.Item>
                     <br />
                     <Form.Item
@@ -79,7 +82,7 @@ const Post = (props:any) => {
                             </Tooltip>
                         }
                     >
-                        <Input/>
+                        <Input />
                     </Form.Item>
                     <br />
                     <Form.Item
@@ -93,7 +96,7 @@ const Post = (props:any) => {
                         <Select
                             mode="tags"
                             tokenSeparators={[',']}
-                            style={{ width: '300px'}}
+                            style={{ width: '300px' }}
                         ></Select>
                     </Form.Item>
                     <br />
@@ -108,10 +111,20 @@ const Post = (props:any) => {
                         <Select
                             mode="tags"
                             tokenSeparators={[',']}
-                            style={{ width: '300px'}}
+                            style={{ width: '300px' }}
                         ></Select>
                     </Form.Item>
                     <br />
+                    <Form.Item
+                        name="coverImg"
+                        label={
+                            <Tooltip title="A beautiful cover image would make your project stand out!">
+                                Cover Image
+                            </Tooltip>
+                        }
+                    >
+                        <Input />
+                    </Form.Item>
                     {/* <Form.Item
                         name="ProjImg"
                         label={

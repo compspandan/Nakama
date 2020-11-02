@@ -11,7 +11,7 @@ export interface IUser extends Document
     qualification: String,
     bio : String,
     skills: String[],
-    img: any
+    img: string
 }
 
 const userSchema: Schema = new Schema({
@@ -24,11 +24,7 @@ const userSchema: Schema = new Schema({
     qualification: String,
     bio: String,
     skills: [String],
-    img: 
-    { 
-        data: Buffer, 
-        contentType: String 
-    }
+    img: String
 });
 
 export default model<IUser>('user', userSchema);

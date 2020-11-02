@@ -153,8 +153,14 @@ const SignUp = () => {
                             />
                         </Form.Item>
                         <br />
+                        <Form.Item
+                            name="img"
+                            label="Profile Pic"
+                        >
+                            <Input />
+                        </Form.Item>
                         {/* <Form.Item name="ProfilePic" label="Profile Pic">
-                        <UploadImg/>
+                            <UploadImg/>
                         </Form.Item> */}
                         <Button type="primary" htmlType="submit" size="large">
                             Register

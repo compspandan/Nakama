@@ -13,10 +13,10 @@ interface Props {
     description: string;
     coverImg: string;
     skills: string[];
-    teamMembers: string[];
+    members: string[];
 }
 
-const Project: FC<Props> = ({ title, description, coverImg, skills, teamMembers }) => {
+const Project: FC<Props> = ({ title, description, coverImg, skills, members }) => {
 
     return (
         <Card>
@@ -26,7 +26,7 @@ const Project: FC<Props> = ({ title, description, coverImg, skills, teamMembers 
                     <Desc>{description}</Desc>
                 </Container>
                 <Container>
-                    {teamMembers.map((username, dex) => (
+                    {members.map((username, dex) => (
                         <Link to={`/user/${username}`} key={dex}>
                             <Avatar src={`https://picsum.photos/200/300?random=${dex}`} size="large" style={{ margin: "5px" }} />
                         </Link>
