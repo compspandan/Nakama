@@ -155,7 +155,7 @@ const SignUp = () => {
                         <br />
                         <Form.Item
                             name="img"
-                            label="Profile Pic"
+                            label="Set Profile Pic"
                         >
                             <Input />
                         </Form.Item>

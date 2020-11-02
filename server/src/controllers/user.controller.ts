@@ -44,6 +44,7 @@ async function createUser(req: any, res: Response) {
     //         console.log('image was deleted');
     //     });
     // }
+
     await newUser.save(function (err: any, user: IUser) {
         if (!err) {
             res.json({ user: user, message: 'Successfully saved user!' }).status(
@@ -116,6 +117,7 @@ async function putUser(req: Request, res: Response) {
             qualification: req.body.qualification,
             bio: req.body.bio,
             skills: req.body.skills,
+            img: req.body.img
         },
         function (err, user: IUser) {
             if (!err) {

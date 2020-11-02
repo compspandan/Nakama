@@ -9,6 +9,7 @@ import Button from '../SignIn/Button';
 import Input from '../SignIn/Input';
 import Form from '../SignUp/Form';
 import axios from '../../helpers/axios'
+import {useStoreState} from 'easy-peasy'
 
 interface Props {
     setChoice: (choice: string) => void;
@@ -16,9 +17,11 @@ interface Props {
 }
 
 const Post: FC<Props> = ({ setChoice, user }) => {
-
+  
+    const {user}  = useStoreState((state:any)=> state.auth);
     const onSubmit = async (values: any) => {
-        await axios.post('/project', { ...values, teamLeader: user })
+        const userDetails = {...values, members:[user], teamLeader : user};
+        await axios.post('/project', userDetails)
             .then((res) => { setChoice("dashboard") })
             .catch(function (err: any) {
                 console.log(err);
@@ -125,16 +128,18 @@ const Post: FC<Props> = ({ setChoice, user }) => {
                     >
                         <Input />
                     </Form.Item>
-                    {/* <Form.Item
+                  {/* <Form.Item
                         name="ProjImg"
                         label={
-                            <Tooltip title="An optional field for users who want to use a project pic.">
+                            <Tooltip title="Link to the project profile pic.">
                                 Project Image
                             </Tooltip>
                         }
                     >
-                        <UploadImg />
-                    </Form.Item> */}
+                        <Input/>
+                    </Form.Item>
+                    */}
+                  
                     <Button type="primary" htmlType="submit" size="large">
                         Submit
                     </Button>

@@ -84,6 +84,7 @@ export const createProject = async (req: Request, res: Response) => {
 export const updateProject = async (req: Request, res: Response) => {
     const {
         title,
+        teamLeader,
         members,
         description,
         skills,
@@ -100,6 +101,7 @@ export const updateProject = async (req: Request, res: Response) => {
 
     const project = {};
     if (title) (project as any).title = title;
+    if (teamLeader) (project as any).teamLeader = teamLeader;
     if (members) (project as any).members = members;
     if (description) (project as any).description = description;
     if (skills) (project as any).skills = skills;

@@ -26,8 +26,8 @@ const Project: FC<Props> = ({ title, description, coverImg, skills, members }) =
                     <Desc>{description}</Desc>
                 </Container>
                 <Container>
-                    {members.map((username, dex) => (
-                        <Link to={`/user/${username}`} key={dex}>
+                    {members.map((user, dex) => (
+                        <Link to={`/user/${user.username}`} key={dex}>
                             <Avatar src={`https://picsum.photos/200/300?random=${dex}`} size="large" style={{ margin: "5px" }} />
                         </Link>
                     ))}

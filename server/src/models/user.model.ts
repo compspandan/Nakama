@@ -11,7 +11,7 @@ export interface IUser extends Document
     qualification: String,
     bio : String,
     skills: String[],
-    img: string
+    img: String
 }
 
 const userSchema: Schema = new Schema({
