@@ -8,7 +8,7 @@ import DashboardActiveProjects from '../components/DashboardActiveProjects';
 import { ReactQueryCacheProvider, QueryCache, useQuery } from 'react-query';
 import { useStoreState } from 'easy-peasy';
 import axios from '../helpers/axios';
-import { Skeleton } from 'antd';
+import { Empty, Skeleton } from 'antd';
 
 
 const queryCache = new QueryCache()
@@ -21,14 +21,12 @@ interface RenderProps {
 const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
     const { user } = useStoreState((state: any) => state.auth);
 
-    const { isLoading, error, data } = useQuery('user', () =>
-        axios.get(`/project/`).then(res =>
-            res.data
-        )
+    const { isLoading, data } = useQuery('user', () =>
+        axios.get(`/project/`).then(res => res.data)
     )
 
-    if (choice === "post") return <Post func={setChoice} />;
-    else {
+    if (choice === "post") return <Post setChoice={setChoice} user={user} />;
+    else if (choice === "dashboard") {
         if (isLoading) {
             return (
                 <DashBoardContainer>
@@ -42,17 +40,14 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
         }
         else {
             const { requestsReceived, username } = user;
-            console.log(data);
-            const activeProjects = data.projects.filter((project: any) => {
-                if (project.teamLeader) {
-                    return (project.teamLeader.username === username)
+            const { projects } = data;
+            const activeProjects = projects.filter((project: any) => {
+                const { teamLeader } = project;
+                if (teamLeader) {
+                    return (teamLeader.username === username);
                 }
-                else {
-                    return false;
-                }
+                else return false;
             });
-            
-            const changedReqRecieved = requestsReceived === undefined ? [] : requestsReceived;
 
             return (
                 <DashBoardContainer>
@@ -67,6 +62,17 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
                 </DashBoardContainer>
             )
         }
+    }
+    else {
+        return (
+            <Empty
+                description={
+                    <div>
+                        Not Implemented
+                    </div>
+                }
+            />
+        )
     }
 }
 

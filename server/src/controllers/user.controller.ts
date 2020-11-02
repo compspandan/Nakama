@@ -26,13 +26,28 @@ async function createUser(req: any, res: Response) {
         password: req.body.password,
         university: req.body.university,
         qualification: req.body.qualification,
-        bio : req.body.bio,
+        bio: req.body.bio,
         skills: req.body.skills,
-        img: req.body.img
+        img: req.body.img,
+        // img: {
+        //     data: null,
+        //     contentType: null,
+        // },
     });
+    // if (req.file != undefined) {
+    //     newUser.img.data = fs.readFileSync(
+    //         path.join('uploads/' + req.file.filename)
+    //     );
+    //     newUser.img.contentType = 'image/png';
+    //     fs.unlink(path.join('uploads/' + req.file.filename), (err: any) => {
+    //         if (err) throw err;
+    //         console.log('image was deleted');
+    //     });
+    // }
+
     await newUser.save(function (err: any, user: IUser) {
         if (!err) {
-            res.json({ user: user, message: 'successfully saved user' }).status(
+            res.json({ user: user, message: 'Successfully saved user!' }).status(
                 200
             );
         } else {
@@ -100,7 +115,7 @@ async function putUser(req: Request, res: Response) {
             password: req.body.password,
             university: req.body.university,
             qualification: req.body.qualification,
-            bio : req.body.bio,
+            bio: req.body.bio,
             skills: req.body.skills,
             img: req.body.img
         },
