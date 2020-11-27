@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ApproveContainer = styled.div`
     margin-left: auto;
@@ -11,4 +11,4 @@ export const ApproveButton = styled.div`
     background-color: none;
     cursor: pointer;
     display: flex;
-`
+`;

@@ -1,17 +1,16 @@
 import { model, Schema, Document } from 'mongoose';
 
-export interface IUser extends Document
-{
-    firstName:String,
-    lastName: String,
-    email: String,
-    username: String,
-    password: String,
-    university: String,
-    qualification: String,
-    bio : String,
-    skills: String[],
-    img: String
+export interface IUser extends Document {
+    firstName: String;
+    lastName: String;
+    email: String;
+    username: String;
+    password: String;
+    university: String;
+    qualification: String;
+    bio: String;
+    skills: String[];
+    img: String;
 }
 
 const userSchema: Schema = new Schema({
@@ -24,7 +23,7 @@ const userSchema: Schema = new Schema({
     qualification: String,
     bio: String,
     skills: [String],
-    img: String
+    img: String,
 });
 
 export default model<IUser>('user', userSchema);

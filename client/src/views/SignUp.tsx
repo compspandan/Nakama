@@ -12,19 +12,19 @@ import Input, { SiginPassword } from '../components/SignIn/Input';
 import Quote from '../components/SignIn/Quote';
 import SignUpContainer, {
     SignUpSectionLeft,
-    SignUpSectionRight
+    SignUpSectionRight,
 } from '../components/SignUp/Contain';
 import Form from '../components/SignUp/Form';
 import { Name } from '../components/SignUp/Name';
 import axios from '../helpers/axios';
 import history from '../helpers/history';
 
-
 const SignUp = () => {
     const { logIn } = useStoreActions((actions: any) => actions.auth);
 
     const onSubmit = async (values: any) => {
-        await axios.post('/users', values)
+        await axios
+            .post('/users', values)
             .then(function ({ data }) {
                 logIn(data.user);
                 history.push('/dashboard');
@@ -32,7 +32,7 @@ const SignUp = () => {
             .catch(function (err: any) {
                 console.log(err);
                 alert('Some error while signing up.');
-            })
+            });
     };
 
     return (
@@ -153,10 +153,7 @@ const SignUp = () => {
                             />
                         </Form.Item>
                         <br />
-                        <Form.Item
-                            name="img"
-                            label="Set Profile Pic"
-                        >
+                        <Form.Item name="img" label="Set Profile Pic">
                             <Input />
                         </Form.Item>
                         {/* <Form.Item name="ProfilePic" label="Profile Pic">

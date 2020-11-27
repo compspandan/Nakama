@@ -7,7 +7,6 @@ import Avatar from 'antd/lib/avatar/avatar';
 import { Link } from 'react-router-dom';
 import Container from './Container';
 
-
 interface Props {
     title: string;
     description: string;
@@ -16,8 +15,13 @@ interface Props {
     members: any[];
 }
 
-const Project: FC<Props> = ({ title, description, coverImg, skills, members }) => {
-
+const Project: FC<Props> = ({
+    title,
+    description,
+    coverImg,
+    skills,
+    members,
+}) => {
     return (
         <Card>
             <div>
@@ -28,20 +32,29 @@ const Project: FC<Props> = ({ title, description, coverImg, skills, members }) =
                 <Container>
                     {members.map((user, dex) => (
                         <Link to={`/user/${user.username}`} key={dex}>
-                            <Avatar src={`https://picsum.photos/200/300?random=${dex}`} size="large" style={{ margin: "5px" }} />
+                            <Avatar
+                                src={`https://picsum.photos/200/300?random=${dex}`}
+                                size="large"
+                                style={{ margin: '5px' }}
+                            />
                         </Link>
                     ))}
                 </Container>
                 <SkillContainer>
                     {skills.map((skill, dex) => {
-                        if (dex <= 2) return (<Skill to={`/skills/${skill}`} key={dex}>{skill}</Skill>)
-                        else return "";
+                        if (dex <= 2)
+                            return (
+                                <Skill to={`/skills/${skill}`} key={dex}>
+                                    {skill}
+                                </Skill>
+                            );
+                        else return '';
                     })}
                 </SkillContainer>
             </div>
             <Img src={coverImg} alt={title} />
         </Card>
-    )
-}
+    );
+};
 
 export default Project;

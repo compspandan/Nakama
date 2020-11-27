@@ -3,4 +3,4 @@ import { baseURL } from '../config';
 
 export default axios.create({
     baseURL,
-})
+});

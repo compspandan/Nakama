@@ -47,9 +47,10 @@ async function createUser(req: any, res: Response) {
 
     await newUser.save(function (err: any, user: IUser) {
         if (!err) {
-            res.json({ user: user, message: 'Successfully saved user!' }).status(
-                200
-            );
+            res.json({
+                user: user,
+                message: 'Successfully saved user!',
+            }).status(200);
         } else {
             res.json({ err, message: 'Error in creating user' }).status(404);
         }
@@ -57,28 +58,28 @@ async function createUser(req: any, res: Response) {
 }
 
 async function getUser(req: Request, res: Response) {
-    await User.findOne({ username: req.params.userName }, function (
-        err,
-        user: IUser
-    ) {
-        if (!err) {
-            if (user) {
+    await User.findOne(
+        { username: req.params.userName },
+        function (err, user: IUser) {
+            if (!err) {
+                if (user) {
+                    res.json({
+                        user,
+                        message: 'Successfully found user.',
+                    }).status(200);
+                } else {
+                    res.json({
+                        err: 'No user exists',
+                        message: 'No such user.',
+                    }).status(404);
+                }
+            } else
                 res.json({
-                    user,
-                    message: 'Successfully found user.',
-                }).status(200);
-            } else {
-                res.json({
-                    err: 'No user exists',
-                    message: 'No such user.',
+                    err,
+                    message: 'Some error occured in getting user',
                 }).status(404);
-            }
-        } else
-            res.json({
-                err,
-                message: 'Some error occured in getting user',
-            }).status(404);
-    });
+        }
+    );
 }
 
 async function authUser(req: Request, res: Response) {
@@ -117,7 +118,7 @@ async function putUser(req: Request, res: Response) {
             qualification: req.body.qualification,
             bio: req.body.bio,
             skills: req.body.skills,
-            img: req.body.img
+            img: req.body.img,
         },
         function (err, user: IUser) {
             if (!err) {

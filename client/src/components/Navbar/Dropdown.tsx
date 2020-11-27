@@ -15,6 +15,6 @@ export const InnerText = styled.div`
     cursor: pointer;
     margin: 0 5px;
     color: black;
-    background-color: white;   
-    height: 20px; 
+    background-color: white;
+    height: 20px;
 `;

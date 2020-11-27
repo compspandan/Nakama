@@ -17,12 +17,15 @@ interface Props {
 const Post: FC<Props> = ({ setChoice, user }) => {
     const onSubmit = async (values: any) => {
         const userDetails = { ...values, members: [user], teamLeader: user };
-        await axios.post('/project', userDetails)
-            .then((res) => { setChoice("dashboard") })
+        await axios
+            .post('/project', userDetails)
+            .then((res) => {
+                setChoice('dashboard');
+            })
             .catch(function (err: any) {
                 console.log(err);
-                alert(err)
-            })
+                alert(err);
+            });
     };
 
     return (

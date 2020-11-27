@@ -2,59 +2,56 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Col, Row, Skeleton } from 'antd';
 import Project from './Project';
-import { useQuery } from 'react-query'
+import { useQuery } from 'react-query';
 import axios from '../../helpers/axios';
 import SideTren from './SideTren';
 
-
 const Trending = () => {
-    const isDesktopOrLaptop = useMediaQuery({ minWidth: 768 })
-    const isSmallScreen = useMediaQuery({ maxWidth: 768 })
-    //window.addEventListener('resize',findScreenSize) 
+    const isDesktopOrLaptop = useMediaQuery({ minWidth: 768 });
+    const isSmallScreen = useMediaQuery({ maxWidth: 768 });
+    //window.addEventListener('resize',findScreenSize)
 
     const { isLoading, data } = useQuery('allProjects', () =>
-        axios.get('/project').then(res =>
-            res.data
-        )
-    )
+        axios.get('/project').then((res) => res.data)
+    );
 
-
-    if (isLoading) return (
-        <div>
-            {isSmallScreen &&
-                <div>
-                    <Row>
-                        <Col className="gutter-row" span={24}>
-                        <SideTren />
-                            <Skeleton active />
-                        </Col>
-                    </Row>
-                </div>
-            }
-            {isDesktopOrLaptop && //minimumDeviceWidth required to render this component
-                <div>
-                    <Row gutter={18}>
-                        <Col className="gutter-row" md={16}>
-                            <Skeleton active />
-                        </Col>
-                        <Col className="gutter-row" md={8}>
-                        <SideTren />
-                        </Col>
-                    </Row>
-                </div>
-            }
-        </div>
-    )
+    if (isLoading)
+        return (
+            <div>
+                {isSmallScreen && (
+                    <div>
+                        <Row>
+                            <Col className="gutter-row" span={24}>
+                                <SideTren />
+                                <Skeleton active />
+                            </Col>
+                        </Row>
+                    </div>
+                )}
+                {isDesktopOrLaptop && ( //minimumDeviceWidth required to render this component
+                    <div>
+                        <Row gutter={18}>
+                            <Col className="gutter-row" md={16}>
+                                <Skeleton active />
+                            </Col>
+                            <Col className="gutter-row" md={8}>
+                                <SideTren />
+                            </Col>
+                        </Row>
+                    </div>
+                )}
+            </div>
+        );
 
     const { projects } = data;
 
     return (
         <div>
-            {isSmallScreen &&
+            {isSmallScreen && (
                 <div>
                     <Row>
                         <Col className="gutter-row" span={24}>
-                        <SideTren />
+                            <SideTren />
                             {projects.map((project: any, dex: number) => (
                                 <Project
                                     key={dex}
@@ -71,8 +68,8 @@ const Trending = () => {
                         </Col>
                     </Row>
                 </div>
-            }
-            {isDesktopOrLaptop && //minimumDeviceWidth required to render this component
+            )}
+            {isDesktopOrLaptop && ( //minimumDeviceWidth required to render this component
                 <div>
                     <Row gutter={18}>
                         <Col className="gutter-row" md={16}>
@@ -91,13 +88,13 @@ const Trending = () => {
                             ))}
                         </Col>
                         <Col className="gutter-row" md={8}>
-                        <SideTren />
+                            <SideTren />
                         </Col>
                     </Row>
                 </div>
-            }
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default Trending;

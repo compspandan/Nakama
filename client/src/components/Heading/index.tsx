@@ -18,7 +18,6 @@ export const H2 = styled(Heading)`
     @media (max-width: 768px) {
         font-size: 24px;
     }
-
 `;
 
 export default Heading;

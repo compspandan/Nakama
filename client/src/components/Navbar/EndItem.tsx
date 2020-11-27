@@ -28,7 +28,7 @@ const menu = (
             <a href="/signup">Sign Up</a>
         </MenuItem>
     </Menu>
-)
+);
 
 const EndItem = () => {
     const { loggedIn, user } = useStoreState((state: any) => state.auth);
@@ -40,21 +40,17 @@ const EndItem = () => {
                     <LinkBtn to="/signup">Sign Up</LinkBtn>
                 </LinkGroup>
                 <Dropdown arrow overlay={menu}>
-                    <InnerText>
-                        Join
-                    </InnerText>
+                    <InnerText>Join</InnerText>
                 </Dropdown>
             </Container>
-        )
-    }
-    else {
+        );
+    } else {
         return (
             <StyledLink to="/dashboard">
                 <Avatar size="large" src={user.img} />
             </StyledLink>
-        )
+        );
     }
 };
-
 
 export default EndItem;
