@@ -1,5 +1,5 @@
 import { message, Popconfirm } from 'antd';
-import { CheckCircle, XCircle } from "phosphor-react";
+import { CheckCircle, XCircle } from 'phosphor-react';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -17,14 +17,12 @@ const Title = styled.h1`
     }
 `;
 
-
 export const Desc = styled.div`
     color: #6f6f6f;
     @media (max-width: 768px) {
         font-size: 15px;
     }
 `;
-
 
 export default function Requests(props: any) {
     const [checked, setChecked] = useState<Boolean>(false);
@@ -37,14 +35,14 @@ export default function Requests(props: any) {
 
     function accept() {
         message.success('Click on Yes');
-        setChecked(true)
+        setChecked(true);
     }
-    
+
     function reject() {
         message.success('Click on Yes');
-        setRejected(true)
+        setRejected(true);
     }
-    
+
     function cancel() {
         message.error('Click on No');
     }
@@ -58,7 +56,6 @@ export default function Requests(props: any) {
                 <Desc>{props.comment}</Desc>
             </div>
             <ApproveContainer>
-
                 <Popconfirm
                     title="Are you sure to accept this request?"
                     onConfirm={accept}
@@ -66,7 +63,12 @@ export default function Requests(props: any) {
                     okText="Yes"
                     cancelText="No"
                 >
-                    <ApproveButton><CheckCircle size={30} style={{ color: checked ? "green" : "black" }} /></ApproveButton>
+                    <ApproveButton>
+                        <CheckCircle
+                            size={30}
+                            style={{ color: checked ? 'green' : 'black' }}
+                        />
+                    </ApproveButton>
                 </Popconfirm>
                 <Popconfirm
                     title="Are you sure to reject this request?"
@@ -75,7 +77,12 @@ export default function Requests(props: any) {
                     okText="Yes"
                     cancelText="No"
                 >
-                    <ApproveButton><XCircle size={30} style={{ color: rejected ? "red" : "black" }} /></ApproveButton>
+                    <ApproveButton>
+                        <XCircle
+                            size={30}
+                            style={{ color: rejected ? 'red' : 'black' }}
+                        />
+                    </ApproveButton>
                 </Popconfirm>
             </ApproveContainer>
         </Card>

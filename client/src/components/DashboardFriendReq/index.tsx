@@ -11,7 +11,7 @@ interface IReq {
 }
 
 interface Props {
-    requestsReceived: IReq[]
+    requestsReceived: IReq[];
 }
 
 const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
@@ -19,23 +19,21 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
         return (
             <Row>
                 <Col xs={24} md={15}>
-                    <Container style={{ margin: "15px" }}>
+                    <Container style={{ margin: '15px' }}>
                         <H2>Requests</H2>
                         <Empty
-                            description={"You currently have no requests."}
+                            description={'You currently have no requests.'}
                         />
                     </Container>
                 </Col>
                 <Col xs={24} md={9} />
             </Row>
-
-        )
-    }
-    else {
+        );
+    } else {
         return (
             <Row>
                 <Col xs={24} md={15}>
-                    <Container style={{ margin: "15px" }}>
+                    <Container style={{ margin: '15px' }}>
                         <H2>Requests</H2>
                         {requestsReceived.map(({ user, comment }, index) => {
                             return (
@@ -46,14 +44,14 @@ const DashboardFriendReq: FC<Props> = ({ requestsReceived }) => {
                                     img={user.img}
                                     comment={comment}
                                 />
-                            )
+                            );
                         })}
                     </Container>
                 </Col>
                 <Col xs={24} md={9} />
             </Row>
-        )
+        );
     }
-}
+};
 
 export default DashboardFriendReq;

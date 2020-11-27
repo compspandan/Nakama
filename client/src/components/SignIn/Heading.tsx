@@ -27,7 +27,6 @@ export const HeadingMobile = styled.h1`
     }
 `;
 
-
 export const Name = styled.h1`
     color: white;
     padding: 20px 0 0 20px;

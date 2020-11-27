@@ -4,32 +4,31 @@ import { Button } from 'antd';
 export default styled(Button)`
     width: 122px;
     height: 50px;
-    background: #5cb85c;  /* fallback for old browsers */
+    background: #5cb85c; /* fallback for old browsers */
     border-color: #4cae4c;
     font-weight: 550;
     border-radius: 62px;
-    
+
     &:hover {
         background-color: #449d44;
         border-color: #398439;
     }
-    
+
     &::selection {
         background-color: #449d44;
         border-color: #398439;
     }
-    
+
     &:focus {
         background-color: #449d44;
         border-color: #398439;
     }
-    
+
     &:active {
         background-color: #449d44;
         border-color: #398439;
     }
 `;
-
 
 export const LogoBtn = styled.button`
     margin: 10px;
@@ -60,7 +59,6 @@ export const LogoBtn = styled.button`
         transition-duration: 10ms;
     }
 `;
-
 
 export const GoogleBtnText = styled.span`
     display: inline-block;

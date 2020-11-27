@@ -11,8 +11,7 @@ import { SliderPage } from '../components/Page';
 import Post from '../components/Post';
 import axios from '../helpers/axios';
 
-
-const queryCache = new QueryCache()
+const queryCache = new QueryCache();
 
 interface RenderProps {
     choice: string;
@@ -23,11 +22,11 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
     const { user } = useStoreState((state: any) => state.auth);
 
     const { isLoading, data } = useQuery('user', () =>
-        axios.get(`/project/`).then(res => res.data)
-    )
+        axios.get(`/project/`).then((res) => res.data)
+    );
 
-    if (choice === "post") return <Post setChoice={setChoice} user={user} />;
-    else if (choice === "dashboard") {
+    if (choice === 'post') return <Post setChoice={setChoice} user={user} />;
+    else if (choice === 'dashboard') {
         if (isLoading) {
             return (
                 <DashBoardContainer>
@@ -37,17 +36,15 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
                         <Skeleton active />
                     </Container>
                 </DashBoardContainer>
-            )
-        }
-        else {
+            );
+        } else {
             const { requestsReceived, username } = user;
             const { projects } = data;
             const activeProjects = projects.filter((project: any) => {
                 const { teamLeader } = project;
                 if (teamLeader) {
-                    return (teamLeader.username === username);
-                }
-                else return false;
+                    return teamLeader.username === username;
+                } else return false;
             });
 
             return (
@@ -55,27 +52,21 @@ const RenderContent: FC<RenderProps> = ({ choice, setChoice }) => {
                     <CenterH1>Dashboard</CenterH1>
                     <Container>
                         <H2>Active Projects</H2>
-                        <DashboardActiveProjects
-                            projects={activeProjects}
+                        <DashboardActiveProjects projects={activeProjects} />
+                        <DashboardFriendReq
+                            requestsReceived={requestsReceived}
                         />
-                        <DashboardFriendReq requestsReceived={requestsReceived} />
                     </Container>
                 </DashBoardContainer>
-            )
+            );
         }
+    } else {
+        return <Empty description={'Not Implemented'} />;
     }
-    else {
-        return (
-            <Empty
-                description={"Not Implemented"}
-            />
-        )
-    }
-}
-
+};
 
 const Dashboard = () => {
-    const [choice, setChoice] = useState<string>("dashboard");
+    const [choice, setChoice] = useState<string>('dashboard');
     return (
         <SliderPage setChoice={setChoice}>
             <Container>
@@ -84,7 +75,7 @@ const Dashboard = () => {
                 </ReactQueryCacheProvider>
             </Container>
         </SliderPage>
-    )
-}
+    );
+};
 
 export default Dashboard;

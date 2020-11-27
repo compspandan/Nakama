@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 // general container component
 export const Container = styled.div``;
 

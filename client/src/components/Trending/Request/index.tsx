@@ -14,24 +14,36 @@ interface Props {
     requestsReceived: any[];
 }
 
-const Request: FC<Props> = ({ visible, setVisible, user, project_id, requestsReceived }) => {
+const Request: FC<Props> = ({
+    visible,
+    setVisible,
+    user,
+    project_id,
+    requestsReceived,
+}) => {
     const [_, setLoading] = useState<boolean>(false);
-    const [comment, setComment] = useState<string>("");
+    const [comment, setComment] = useState<string>('');
 
     const showModal = () => {
         setVisible(true);
     };
 
     const handleOk = async () => {
-        if (comment === "") return;
-        if (requestsReceived === undefined) await axios.put(`/project/${project_id}`, { requestsReceived: [{ user, comment }] });
-        else await axios.put(`/project/${project_id}`, { requestsReceived: [...requestsReceived, { user, comment }] });
+        if (comment === '') return;
+        if (requestsReceived === undefined)
+            await axios.put(`/project/${project_id}`, {
+                requestsReceived: [{ user, comment }],
+            });
+        else
+            await axios.put(`/project/${project_id}`, {
+                requestsReceived: [...requestsReceived, { user, comment }],
+            });
         setLoading(true);
         console.log(comment); // handle req
         setTimeout(() => {
             setLoading(false);
             setVisible(false);
-            setComment("");
+            setComment('');
         }, 3000);
     };
 
@@ -53,16 +65,21 @@ const Request: FC<Props> = ({ visible, setVisible, user, project_id, requestsRec
                     </ReturnBtn>,
                     <SubmitBtn key="submit" onClick={handleOk}>
                         Submit
-                    </SubmitBtn>
+                    </SubmitBtn>,
                 ]}
             >
                 <Text>
-                    Write a small description about why you want to work on this project!
+                    Write a small description about why you want to work on this
+                    project!
                 </Text>
-                <TextArea value={comment} onChange={(e) => setComment(e.target.value)} rows={4} />
+                <TextArea
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    rows={4}
+                />
             </Modal>
         </>
     );
-}
+};
 
 export default Request;

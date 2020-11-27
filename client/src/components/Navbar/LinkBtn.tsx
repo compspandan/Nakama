@@ -10,11 +10,11 @@ export const LinkBtn = styled(Link)`
     font-weight: 600;
     &:hover {
         color: black;
-    }    
+    }
 `;
 
 export const LinkGroup = styled.div`
     @media only screen and (max-width: 768px) {
-        display: none; 
+        display: none;
     }
 `;

@@ -12,7 +12,6 @@ export default styled.span`
     margin-left: 10px;
 `;
 
-
 export const LikeBtn = styled.div`
     background-color: none;
     cursor: pointer;

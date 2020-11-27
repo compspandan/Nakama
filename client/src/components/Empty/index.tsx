@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import {Empty} from 'antd';
+import { Empty } from 'antd';
 import Container from './Container';
 
 interface Props {
@@ -9,11 +9,9 @@ interface Props {
 const StyledEmpty: FC<Props> = ({ description }) => {
     return (
         <Container>
-            <Empty
-                description={description}
-            />
+            <Empty description={description} />
         </Container>
-    )
-}
+    );
+};
 
 export default StyledEmpty;

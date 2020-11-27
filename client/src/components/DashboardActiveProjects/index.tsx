@@ -18,22 +18,29 @@ interface Props {
 
 const ActiveProjects: FC<Props> = ({ projects }) => {
     console.log(projects);
-    if(projects === undefined || projects.length === 0) {
-        return (
-            <Empty 
-                description={"No Projects are created."}
-            />       
-        )
-    }
-    else {
+    if (projects === undefined || projects.length === 0) {
+        return <Empty description={'No Projects are created.'} />;
+    } else {
         return (
             <Container>
-                {projects.map(({ title, description, coverImg, skills, members }, dex) => (
-                    <Project key={dex} title={title} description={description} coverImg={coverImg} skills={skills} members={members} />
-                ))}
+                {projects.map(
+                    (
+                        { title, description, coverImg, skills, members },
+                        dex
+                    ) => (
+                        <Project
+                            key={dex}
+                            title={title}
+                            description={description}
+                            coverImg={coverImg}
+                            skills={skills}
+                            members={members}
+                        />
+                    )
+                )}
             </Container>
-        )
+        );
     }
-}
+};
 
 export default ActiveProjects;

@@ -3,7 +3,6 @@ import EndItem from './EndItem';
 import Header from './Header';
 import Link from './Link';
 
-
 const Navbar = () => {
     return (
         <Header>
@@ -11,7 +10,6 @@ const Navbar = () => {
             <EndItem />
         </Header>
     );
-}
-
+};
 
 export default Navbar;
